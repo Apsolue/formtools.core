@@ -27,12 +27,7 @@ steps:
 - script: composer install --no-interaction --prefer-dist
   displayName: 'composer install'
 
-- task: Grunt@0
-  inputs:
-    gruntFile: 'gruntfile.js'
-    targets: 'prod'
-    arguments: '--force'
-    gruntCli: 'node_modules/grunt-cli/bin/grunt'
+- script: grunt sync --force
 
 - task: PublishBuildArtifacts@1
   inputs:
