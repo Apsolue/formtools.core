@@ -7,7 +7,7 @@ trigger:
 - master
 
 pool:
-  vmImage: 'windows-2019'
+  vmImage: 'ubuntu-latest'
 
 variables:
   phpVersion: 7.2
@@ -24,7 +24,19 @@ steps:
 
 - script: yarn install
 
-- script : grunt publish
-
 - script: composer install --no-interaction --prefer-dist
   displayName: 'composer install'
+
+- task: Grunt@0
+  inputs:
+    gruntFile: 'gruntfile.js'
+    targets: 'publish'
+    gruntCli: 'node_modules/grunt-cli/bin/grunt'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: 'dist/'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+
+
