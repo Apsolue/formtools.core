@@ -27,7 +27,7 @@ steps:
 - script: composer install --no-interaction --prefer-dist
   displayName: 'composer install'
 
-- script: node_modules/grunt-cli/bin/grunt
+- script: node_modules/grunt-cli/bin/grunt --path ''
 
 - task: PublishBuildArtifacts@1
   inputs:
