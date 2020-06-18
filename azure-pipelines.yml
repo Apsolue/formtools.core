@@ -30,7 +30,8 @@ steps:
 - task: Grunt@0
   inputs:
     gruntFile: 'gruntfile.js'
-    targets: 'sync'
+    targets: 'prod'
+    arguments: '--force'
     gruntCli: 'node_modules/grunt-cli/bin/grunt'
 
 - task: PublishBuildArtifacts@1
