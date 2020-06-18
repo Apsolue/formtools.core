@@ -4,40 +4,39 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/php
 
 trigger:
-  - master
-  
-  pool:
-    vmImage: 'ubuntu-latest'
-  
-  variables:
-    phpVersion: 7.2
-  
-  steps:
-  - script: |
-      sudo update-alternatives --set php /usr/bin/php$(phpVersion)
-      sudo update-alternatives --set phar /usr/bin/phar$(phpVersion)
-      sudo update-alternatives --set phpdbg /usr/bin/phpdbg$(phpVersion)
-      sudo update-alternatives --set php-cgi /usr/bin/php-cgi$(phpVersion)
-      sudo update-alternatives --set phar.phar /usr/bin/phar.phar$(phpVersion)
-      php -version
-    displayName: 'Use PHP version $(phpVersion)'
-  
-  - script: yarn install
-  
-  - script: composer install --no-interaction --prefer-dist
-    displayName: 'composer install'
-  
-  - task: Grunt@0
-    inputs:
-      gruntFile: 'gruntfile.js'
-      targets: 
-      gruntCli: 'node_modules/grunt-cli/bin/grunt'
-  
-  - task: PublishBuildArtifacts@1
-    inputs:
-      PathtoPublish: 'dist/'
-      ArtifactName: 'drop'
-      publishLocation: 'Container'
-  
-  
-  
+- develop
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  phpVersion: 7.2
+
+steps:
+- script: |
+    sudo update-alternatives --set php /usr/bin/php$(phpVersion)
+    sudo update-alternatives --set phar /usr/bin/phar$(phpVersion)
+    sudo update-alternatives --set phpdbg /usr/bin/phpdbg$(phpVersion)
+    sudo update-alternatives --set php-cgi /usr/bin/php-cgi$(phpVersion)
+    sudo update-alternatives --set phar.phar /usr/bin/phar.phar$(phpVersion)
+    php -version
+  displayName: 'Use PHP version $(phpVersion)'
+
+- script: yarn install
+
+- script: composer install --no-interaction --prefer-dist
+  displayName: 'composer install'
+
+- task: Grunt@0
+  inputs:
+    gruntFile: 'gruntfile.js'
+    targets: 
+    gruntCli: 'node_modules/grunt-cli/bin/grunt'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: 'dist/'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+
+
