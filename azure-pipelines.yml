@@ -30,7 +30,7 @@ steps:
 - task: Grunt@0
   inputs:
     gruntFile: 'gruntfile.js'
-    targets: 'publish'
+    targets: 
     gruntCli: 'node_modules/grunt-cli/bin/grunt'
 
 - task: PublishBuildArtifacts@1
