@@ -37,7 +37,7 @@ steps:
   inputs:
     connection: 'GitHub Apsolue'
     userRepository: 'Apsolue/formtools.module-custom_fields'
-    defaultVersionType: 'specificTag'
+    defaultVersionType: 'specificVersion'
     version: '2.1.0'
     downloadPath: 'modules'
 
