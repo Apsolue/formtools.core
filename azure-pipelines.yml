@@ -22,7 +22,7 @@ steps:
     php -version
   displayName: 'Use PHP version $(phpVersion)'
 
-- script: yarn install
+- script: yarn upgrade && yarn install
 
 - script: composer install --no-interaction --prefer-dist
   displayName: 'composer install'
@@ -37,7 +37,8 @@ steps:
   inputs:
     connection: 'GitHub Apsolue'
     userRepository: 'Apsolue/formtools.module-custom_fields'
-    defaultVersionType: 'latest'
+    defaultVersionType: 'specificTag'
+    version: '2.1.0'
     downloadPath: 'modules'
 
 - task: ArchiveFiles@2
