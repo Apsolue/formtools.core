@@ -33,6 +33,13 @@ steps:
     targets: 'prod'
     gruntCli: 'node_modules/grunt-cli/bin/grunt'
 
+- task: DownloadGitHubRelease@0
+  inputs:
+    connection: 'GitHub Apsolue'
+    userRepository: 'Apsolue/formtools.module-custom_fields'
+    defaultVersionType: 'latest'
+    downloadPath: 'modules'
+
 - task: ArchiveFiles@2
   inputs:
     rootFolderOrFile: 'dist/'
